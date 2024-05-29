@@ -1,62 +1,56 @@
-class ProductManager {
-  static ultId = 0;
-  constructor() {
-    this.products = [];
-  }
-  addProduct(title, description, price, img, code, stock) {
-    if (!title || !description || !price || !img || !code || !stock) {
-      console.log("todos los campos son obligatorios");
-      return;
-    }
-    if (this.products.some((item) => item.code === code)) {
-      console.log("el code debe ser unico");
-      return;
-    }
-    const nuevoProducto = {
-      id: ++ProductManager.ultId,
-      title,
-      description,
-      price,
-      img,
-      code,
-      stock,
-    };
-    this.products.push(nuevoProducto);
-  }
-  getProducts() {
-    return this.products;
-  }
-  getProductById(id) {
-    const producto = this.products.find((item) => item.id === id);
-    if (!producto) {
-      console.log("not found");
-    } else {
-      console.log("el producto buscado es: ", producto);
-    }
-  }
-}
-const manager = new ProductManager();
-console.log(manager.getProducts());
+const fs = require("fs");
 
-manager.addProduct(
-  "producto prueba",
-  "este es un producto prueba",
-  200,
-  "sin imagen",
-  "abc123",
-  25
-);
+const textoPromises = "./texto-pro.txt";
 
-manager.addProduct(
-  "producto prueba2",
-  "este es un producto prueba2",
-  400,
-  "sin imagen",
-  "abc1234",
-  25
-);
-console.log(manager.getProducts());
+const operacionesAsincronicas = async () => {
+  await fs.promises.writeFile(
+    textoPromises,
+    "nuevo archivo! trabajando con promesas"
+  );
 
-manager.getProductById(1);
-manager.getProductById(2);
-manager.getProductById(3);
+  let respuesta = await fs.promises.readFile(textoPromises, "utf-8");
+  console.log(respuesta);
+
+  await fs.promises.appendFile(textoPromises, " agregamos este texto");
+
+  await fs.promises.unlink(textoPromises);
+};
+operacionesAsincronicas();
+
+let products = [
+  {
+    name: "T-shirt",
+    price: 15.99,
+    category: "Apparel",
+  },
+  {
+    name: "Smartphone",
+    price: 699.99,
+    category: "Electronics",
+  },
+  {
+    name: "Book",
+    price: 12.5,
+    category: "Books",
+  },
+  {
+    name: "Headphones",
+    price: 49.99,
+    category: "Electronics",
+  },
+];
+
+console.log(products);
+
+const productsfile = "./productsfile.json";
+const savefile = async (array) => {
+  await fs.promises.writeFile(productsfile, JSON.stringify(array, null, 2));
+};
+
+savefile(products);
+const readFile = async () => {
+  const answer = await fs.promises.readFile(productsfile, "utf-8");
+  const newarrayofproducts = JSON.parse(answer);
+  console.log(newarrayofproducts);
+};
+readFile();
