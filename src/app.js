@@ -17,3 +17,5 @@ app.get("/", (req, res) => {
 });
 app.use("/api/pets", petsRouter);
 app.use("/api/users", usersRouter);
+
+app.use(express.static("./src/public"));
