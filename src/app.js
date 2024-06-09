@@ -13,7 +13,7 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  res.send("welcome to the app");
+  res.send("welcome to my app");
 });
 app.use("/api/pets", petsRouter);
 app.use("/api/users", usersRouter);
