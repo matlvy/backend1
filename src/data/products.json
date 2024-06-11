@@ -1,0 +1,24 @@
+[
+  {
+    "id": "2",
+    "title": "Sweater",
+    "description": "Sweater Invierno",
+    "code": "S001",
+    "price": 2000,
+    "status": true,
+    "stock": 10,
+    "category": "Indumentaria",
+    "thumbnails": ["gamer1.jpg", "gamer2.jpg"]
+  },
+  {
+    "id": "3",
+    "title": "Buzo",
+    "description": "Buzo Polar",
+    "code": "B001",
+    "price": 5000,
+    "status": true,
+    "stock": 10,
+    "category": "Indumentaria",
+    "thumbnails": ["gamer1.jpg", "gamer2.jpg"]
+  }
+]
