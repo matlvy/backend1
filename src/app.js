@@ -9,12 +9,12 @@ app.use(express.static("./src/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.engine("handlebards", exphbs.engine());
+app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
 app.set("views", "./src/views");
 
 app.get("/", (req, res) => {
-  res.send("hi world");
+  res.render("index");
 });
 app.listen(PORT, () => {
   console.log("listening on port", PORT);
