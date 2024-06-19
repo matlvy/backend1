@@ -1,6 +1,5 @@
 import express from "express";
 import exphbs from "express-handlebars";
-import viewsRouter from "./routes/views.router.js";
 import { Server } from "socket.io";
 
 const app = express();
@@ -21,12 +20,6 @@ const httpServer = app.listen(PORT, () => {
 });
 
 const io = new Server(httpServer);
-
-const users = [
-  { id: 1, name: "Will", surname: "Smith" },
-  { id: 2, name: "Jennifer", surname: "Anniston" },
-  { id: 2, name: "Tom", surname: "Cruise" },
-];
 
 io.on("connection", (socket) => {
   console.log("a client has connected");
