@@ -16,6 +16,16 @@ app.set("views", "./src/views");
 app.get("/", (req, res) => {
   res.render("index");
 });
-app.listen(PORT, () => {
+const httpServer = app.listen(PORT, () => {
   console.log("listening on port", PORT);
+});
+
+const io = new Server(httpServer);
+let mensajes = [];
+io.on("connection", (socket) => {
+  console.log("a client has connected");
+  socket.on("mensaje", (data) => {
+    mensajes.push(data);
+    io.emit("mensajesLogs", mensajes);
+  });
 });
