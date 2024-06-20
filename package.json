@@ -1,22 +1,19 @@
 {
-  "name": "borrador--desa--3",
-  "type": "module",
+  "name": "backend1.6",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/app.js"
+    "dev": "node --watch src/app.js",
+    "start": "node src/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
     "express": "^4.19.2",
-    "express-handlebars": "^7.1.2",
+    "express-handlebars": "^7.1.3",
     "socket.io": "^4.7.5"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.3"
   }
 }
