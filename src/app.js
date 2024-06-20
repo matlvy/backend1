@@ -1,38 +1,18 @@
 import express from "express";
-import exphbs from "express-handlebars";
-import viewsRouter from "./routes/views.router.js";
-import { Server } from "socket.io";
+import productsRouter from "./routes/products.router.js";
+import cartsRouter from "./routes/carts.router.js";
 
 const app = express();
-const PORT = 8080;
+const PUERTO = 8080;
 
-app.use(express.json());
+// Middleware
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("./src/public"));
+app.use(express.json());
 
-app.engine("handlebars", exphbs.engine());
-app.set("view engine", "handlebars");
-app.set("views", "./src/views");
+// Rutas
+app.use("/api/products", productsRouter);
+app.use("/api/carts", cartsRouter);
 
-app.use("/", viewsRouter);
-
-const httpServer = app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
-
-const io = new Server(httpServer);
-
-const users = [
-  { id: 1, name: "Will", surname: "Smith" },
-  { id: 2, name: "Jennifer", surname: "Anniston" },
-  { id: 2, name: "Tom", surname: "Cruise" },
-];
-
-io.on("connection", (socket) => {
-  console.log("a client has connected");
-  socket.on("message", (data) => {
-    console.log(data);
-  });
-  socket.emit("greetings", "hi client, how are you? i'm your server");
-  socket.emit("users", users);
+app.listen(PUERTO, () => {
+    console.log(`Servidor escuchando en el puerto ${PUERTO}`);
 });
