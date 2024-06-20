@@ -34,17 +34,5 @@
     "status": true,
     "thumbnails": [],
     "id": 3
-  },
-  {
-    "title": "Palmitos",
-    "description": "¿Quien compra esto?",
-    "price": "5500",
-    "img": "Sin Imagen",
-    "code": "abc126",
-    "stock": "150",
-    "category": "Almacen",
-    "status": true,
-    "thumbnails": [],
-    "id": 4
   }
 ]
