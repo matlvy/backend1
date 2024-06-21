@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Smartphone",
+    "description": "High-performance smartphone with advanced features.",
+    "price": 699.99,
+    "code": "SMRTPHN001",
+    "category": "Electronics",
+    "img": "Sin Imagen",
+    "stock": "150",
+    "status": true,
+    "thumbnails": [],
+    "id": 1
+  },
+  {
+    "title": "Laptop",
+    "description": "Thin and lightweight laptop for work and entertainment.",
+    "price": 1299.99,
+    "code": "LPTP001",
+    "category": "Electronics",
+    "img": "Sin Imagen",
+    "stock": "150",
+    "status": true,
+    "thumbnails": [],
+    "id": 2
+  },
+  {
+    "title": "T-shirt",
+    "description": "Comfortable cotton t-shirt with a stylish design.",
+    "price": 89.99,
+    "code": "TSHT001",
+    "category": "Clothing",
+    "img": "Sin Imagen",
+    "stock": "150",
+    "status": true,
+    "thumbnails": [],
+    "id": 3
+  },
+  {
+    "title": "Running Shoes",
+    "description": "Lightweight running shoes with excellent cushioning.",
+    "price": 159.99,
+    "code": "SHOE001",
+    "category": "Footwear",
+    "img": "Sin Imagen",
+    "stock": "150",
+    "status": true,
+    "thumbnails": [],
+    "id": 4
+  },
+  {
+    "title": "Headphones",
+    "description": "Noise-canceling headphones for immersive audio experience.",
+    "price": 299.99,
+    "code": "HDPHN001",
+    "category": "Electronics",
+    "img": "Sin Imagen",
+    "stock": "150",
+    "status": true,
+    "thumbnails": [],
+    "id": 5
+  }
+]

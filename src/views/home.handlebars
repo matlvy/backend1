@@ -1,0 +1,12 @@
+<h1>Bienvenidos al Ecommerce</h1>
+<p>Products</p>
+
+<div class="contenedorProductos">
+  {{#each productos}}
+    <div>
+      <p> {{this.title}} </p>
+      <p> {{this.description}} </p>
+      <p> {{this.price}} </p>
+    </div>
+  {{/each}}
+</div>
