@@ -8,8 +8,7 @@
     "img": "Sin Imagen",
     "stock": "150",
     "status": true,
-    "thumbnails": [],
-    "id": 1
+    "thumbnails": []
   },
   {
     "title": "Laptop",
@@ -20,8 +19,7 @@
     "img": "Sin Imagen",
     "stock": "150",
     "status": true,
-    "thumbnails": [],
-    "id": 2
+    "thumbnails": []
   },
   {
     "title": "T-shirt",
@@ -32,8 +30,7 @@
     "img": "Sin Imagen",
     "stock": "150",
     "status": true,
-    "thumbnails": [],
-    "id": 3
+    "thumbnails": []
   },
   {
     "title": "Running Shoes",
@@ -44,8 +41,7 @@
     "img": "Sin Imagen",
     "stock": "150",
     "status": true,
-    "thumbnails": [],
-    "id": 4
+    "thumbnails": []
   },
   {
     "title": "Headphones",
@@ -56,7 +52,6 @@
     "img": "Sin Imagen",
     "stock": "150",
     "status": true,
-    "thumbnails": [],
-    "id": 5
+    "thumbnails": []
   }
 ]
