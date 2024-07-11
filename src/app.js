@@ -15,41 +15,6 @@ const main = async () => {
   );
 };
 
-/*
-const resultado = await ProductModel.aggregate([
-  {
-    $match: {
-      status: true,
-    },
-  },
-  {
-    $group: {
-      _id: "$category",
-      total: {
-        $sum: "$price",
-      },
-    },
-  },
-  {
-    $sort: {
-      total: 1,
-    },
-  },
-  {
-    $sort: {
-      total: -1,
-    },
-  },
-  { $group: { _id: 1, products: { $push: "$$ROOT" } } },
-  { $project: { _id: 0, products: "$products" } },
-  { $merge: { into: "reports" } },
-]);
-console.log(resultado);
- */
-
-const resultado2 = await ProductModel.paginate({}, { limit: 3, page: 2 });
-console.log(resultado2);
-
 const app = express();
 const PUERTO = 8080;
 
@@ -62,10 +27,6 @@ app.use(express.static("./src/public"));
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
 app.set("views", "./src/views");
-
-app.get("/products", (req, res) => {
-  res.render("products");
-});
 
 // Rutas
 app.use("/api/products", productsRouter);
@@ -101,4 +62,66 @@ io.on("connection", async (socket) => {
     //Le voy a enviar la lista actualizada al cliente:
     io.sockets.emit("productos", await productManager.getProducts());
   });
+});
+
+/*
+const resultado = await ProductModel.aggregate([
+  {
+    $match: {
+      status: true,
+    },
+  },
+  {
+    $group: {
+      _id: "$category",
+      total: {
+        $sum: "$price",
+      },
+    },
+  },
+  {
+    $sort: {
+      total: 1,
+    },
+  },
+  {
+    $sort: {
+      total: -1,
+    },
+  },
+  { $group: { _id: 1, products: { $push: "$$ROOT" } } },
+  { $project: { _id: 0, products: "$products" } },
+  { $merge: { into: "reports" } },
+]);
+console.log(resultado);
+*/
+
+const resultado2 = await ProductModel.paginate({}, { limit: 3, page: 1 });
+console.log(resultado2);
+
+app.get("/products", async (req, res) => {
+  const page = req.query.page || 1;
+  const limit = 2;
+
+  try {
+    const productsList = await ProductModel.paginate({}, { limit, page });
+
+    let arrayProducts = productsList.docs.map((product) => {
+      const { _id, ...rest } = product.toObject();
+      return rest;
+    });
+
+    res.render("products", {
+      products: arrayProducts,
+      hasPrevPage: productsList.hasPrevPage,
+      hasNextPage: productsList.hasNextPage,
+      prevPage: productsList.prevPage,
+      nextPage: productsList.nextPage,
+      currentPage: productsList.page,
+      totalPages: productsList.totalPages,
+    });
+  } catch (error) {
+    console.log("error al solicitar los productos");
+    res.status(500).send("Error en el servidor");
+  }
 });
