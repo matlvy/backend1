@@ -1,5 +1,6 @@
 import express from "express";
 import { engine } from "express-handlebars";
+import exphbs from "express-handlebars";
 import { Server } from "socket.io";
 import productsRouter from "./routes/products.router.js";
 import cartsRouter from "./routes/carts.router.js";
@@ -46,7 +47,7 @@ const resultado = await ProductModel.aggregate([
 console.log(resultado);
  */
 
-const resultado2 = await ProductModel.paginate({}, { limit: 3, page: 1 });
+const resultado2 = await ProductModel.paginate({}, { limit: 3, page: 2 });
 console.log(resultado2);
 
 const app = express();
@@ -58,9 +59,13 @@ app.use(express.json());
 app.use(express.static("./src/public"));
 
 //Express-Handlebars
-app.engine("handlebars", engine());
+app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
 app.set("views", "./src/views");
+
+app.get("/products", (req, res) => {
+  res.render("products");
+});
 
 // Rutas
 app.use("/api/products", productsRouter);
