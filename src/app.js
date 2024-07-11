@@ -14,6 +14,7 @@ const main = async () => {
   );
 };
 
+/*
 const resultado = await ProductModel.aggregate([
   {
     $match: {
@@ -43,6 +44,10 @@ const resultado = await ProductModel.aggregate([
   { $merge: { into: "reports" } },
 ]);
 console.log(resultado);
+ */
+
+const resultado2 = await ProductModel.paginate({}, { limit: 3, page: 1 });
+console.log(resultado2);
 
 const app = express();
 const PUERTO = 8080;
