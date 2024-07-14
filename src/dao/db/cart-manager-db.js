@@ -88,6 +88,24 @@ class CartManager {
       console.log("Error al actualizar el carrito", error);
     }
   }
+  async deleteCart(cartId, carritoEliminado) {
+    try {
+      const updateado = await CartModel.findByIdAndDelete(
+        cartId,
+        carritoEliminado
+      );
+
+      if (!updateado) {
+        console.log("No se encuentra el carrito");
+        return null;
+      }
+
+      console.log("carrito actualizado con exito");
+      return updateado;
+    } catch (error) {
+      console.log("Error al actualizar el carrito", error);
+    }
+  }
 }
 
 export default CartManager;

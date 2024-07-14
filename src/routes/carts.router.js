@@ -94,4 +94,22 @@ router.put("/:cid", async (req, res) => {
     });
   }
 });
+
+router.delete("/:cid", async (req, res) => {
+  const cartId = req.params.cid;
+  const carritoEliminado = req.body;
+
+  try {
+    await cartManager.deleteCart(cartId, carritoEliminado);
+    res.json({
+      message: "carrito eliminado exitosamente",
+    });
+  } catch (error) {
+    console.error("Error al eliminar carrito", error);
+    res.status(500).json({
+      error: "Error interno del servidor",
+    });
+  }
+});
+
 export default router;
