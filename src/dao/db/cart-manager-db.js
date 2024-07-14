@@ -90,18 +90,18 @@ class CartManager {
   }
   async deleteCart(cartId, carritoEliminado) {
     try {
-      const updateado = await CartModel.findByIdAndDelete(
+      const eliminado = await CartModel.findByIdAndDelete(
         cartId,
         carritoEliminado
       );
 
-      if (!updateado) {
+      if (!eliminado) {
         console.log("No se encuentra el carrito");
         return null;
       }
 
       console.log("carrito actualizado con exito");
-      return updateado;
+      return eliminado;
     } catch (error) {
       console.log("Error al actualizar el carrito", error);
     }
