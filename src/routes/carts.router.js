@@ -56,4 +56,42 @@ router.post("/:cid/product/:pid", async (req, res) => {
   }
 });
 
+//4) Eliminar del carrito producto seleccionado
+
+router.delete("/:cid/product/:pid", async (req, res) => {
+  const cartId = req.params.cid;
+  const productId = req.params.pid;
+  const quantity = req.body.quantity || 1;
+
+  try {
+    const actualizarCarrito = await cartManager.eliminarProductoAlCarrito(
+      cartId,
+      productId,
+      quantity
+    );
+    res.json(actualizarCarrito.products);
+  } catch (error) {
+    console.error("Error al eliminar producto al carrito", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+//5) Actualizar carrito
+
+router.put("/:cid", async (req, res) => {
+  const cartId = req.params.cid;
+  const carritoActualizado = req.body;
+
+  try {
+    await cartManager.updateCart(cartId, carritoActualizado);
+    res.json({
+      message: "carrito actualizado exitosamente",
+    });
+  } catch (error) {
+    console.error("Error al actualizar carrito", error);
+    res.status(500).json({
+      error: "Error interno del servidor",
+    });
+  }
+});
 export default router;
