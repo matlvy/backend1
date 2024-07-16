@@ -84,7 +84,7 @@ class CartManager {
       console.log("Error al actualizar el carrito", error);
     }
   }
-  async eliminarProductoAlCarrito(cartId, productId, quantity = 1) {
+  async eliminarProductoDelCarrito(cartId, productId, quantity = 1) {
     try {
       const carrito = await this.getCarritoById(cartId);
       const existeProducto = carrito.products.find(
@@ -103,7 +103,7 @@ class CartManager {
       await carrito.save();
       return carrito;
     } catch (error) {
-      console.log("error al agregar un producto", error);
+      console.log("error al eliminar el producto", error);
     }
   }
 }

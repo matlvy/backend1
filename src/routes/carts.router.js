@@ -99,15 +99,16 @@ router.delete("/:cid/product/:pid", async (req, res) => {
   const quantity = req.body.quantity || 1;
 
   try {
-    const actualizarCarrito = await cartManager.eliminarProductoAlCarrito(
+    const actualizarCarrito = await cartManager.eliminarProductoDelCarrito(
       cartId,
       productId,
       quantity
     );
     res.json(actualizarCarrito.products);
   } catch (error) {
-    console.error("Error al agregar producto al carrito", error);
+    console.error("Error al eliminar producto del carrito", error);
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });
+
 export default router;
