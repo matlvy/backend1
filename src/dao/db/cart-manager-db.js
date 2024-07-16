@@ -84,6 +84,28 @@ class CartManager {
       console.log("Error al actualizar el carrito", error);
     }
   }
+  async eliminarProductoAlCarrito(cartId, productId, quantity = 1) {
+    try {
+      const carrito = await this.getCarritoById(cartId);
+      const existeProducto = carrito.products.find(
+        (item) => item.product.toString() === productId
+      );
+
+      if (existeProducto) {
+        existeProducto.quantity += quantity;
+      } else {
+        carrito.products.remove({ product: productId, quantity });
+      }
+
+      //Vamos a marcar la propiedad "products" como modificada antes de guardar:
+      carrito.markModified("products");
+
+      await carrito.save();
+      return carrito;
+    } catch (error) {
+      console.log("error al agregar un producto", error);
+    }
+  }
 }
 
 export default CartManager;
