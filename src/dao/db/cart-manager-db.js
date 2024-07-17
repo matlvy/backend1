@@ -125,7 +125,7 @@ class CartManager {
       await carrito.save();
       return carrito;
     } catch (error) {
-      console.log("error al eliminar el producto", error);
+      console.log("error al actualizar el producto", error);
     }
   }
 }
