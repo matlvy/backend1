@@ -106,6 +106,28 @@ class CartManager {
       console.log("error al eliminar el producto", error);
     }
   }
+  async actualizaCantidadCarrito(cartId, productId, quantity = 1) {
+    try {
+      const carrito = await this.getCarritoById(cartId);
+      const existeProducto = carrito.products.find(
+        (item) => item.product.toString() === productId
+      );
+
+      if (existeProducto) {
+        existeProducto.quantity += quantity;
+      } else {
+        carrito.products.fill({ product: productId, quantity });
+      }
+
+      //Vamos a marcar la propiedad "products" como modificada antes de guardar:
+      carrito.markModified("products");
+
+      await carrito.save();
+      return carrito;
+    } catch (error) {
+      console.log("error al eliminar el producto", error);
+    }
+  }
 }
 
 export default CartManager;

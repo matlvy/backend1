@@ -110,5 +110,21 @@ router.delete("/:cid/product/:pid", async (req, res) => {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 });
+router.put("/:cid/product/:pid", async (req, res) => {
+  const cartId = req.params.cid;
+  const productId = req.params.pid;
+  const quantity = req.body.quantity || 1;
 
+  try {
+    const actualizarCarrito = await cartManager.actualizaCantidadCarrito(
+      cartId,
+      productId,
+      quantity
+    );
+    res.json(actualizarCarrito.products);
+  } catch (error) {
+    console.error("Error al eliminar producto del carrito", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
 export default router;
